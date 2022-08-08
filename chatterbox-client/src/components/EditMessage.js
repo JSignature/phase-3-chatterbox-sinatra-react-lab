@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 function EditMessage({ id, body, onUpdateMessage }) {
-  const [messageBody, setMessageBody] = useState(body);
+  const [messageBody, setMessageBody] = useState(body)
 
   function handleFormSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
-    fetch(`http://localhost:4000/messages/${id}`, {
-      method: "PATCH",
+    fetch(`http://localhost:9292/messages/${id}`, {
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         body: messageBody,
       }),
     })
-      .then((r) => r.json())
-      .then((updatedMessage) => onUpdateMessage(updatedMessage));
+      .then(r => r.json())
+      .then(updatedMessage => onUpdateMessage(updatedMessage))
   }
 
   return (
@@ -26,11 +26,11 @@ function EditMessage({ id, body, onUpdateMessage }) {
         name="body"
         autoComplete="off"
         value={messageBody}
-        onChange={(e) => setMessageBody(e.target.value)}
+        onChange={e => setMessageBody(e.target.value)}
       />
       <input type="submit" value="Save" />
     </form>
-  );
+  )
 }
 
-export default EditMessage;
+export default EditMessage
